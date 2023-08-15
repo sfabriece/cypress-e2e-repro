@@ -1,0 +1,14 @@
+version: '3.2'
+
+services:
+  pm-database-test:
+    container_name: pm-db-test
+    image: postgres:15-alpine
+    restart: unless-stopped
+    ports:
+      - '5462:5432'
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=docker
+    volumes:
+      - ./tmp/postgres-test:/var/lib/postgresql/data

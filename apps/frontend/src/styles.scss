@@ -1,0 +1,535 @@
+@use 'sass:map';
+
+/*
+ * App Global CSS
+ * ----------------------------------------------------------------------------
+ * Put style rules here that you want to apply globally. These styles are for
+ * the entire app and not just one component. Additionally, this file can be
+ * used as an entry point to import other CSS/Sass files to be included in the
+ * output CSS.
+ * For more information on global stylesheets, visit the documentation:
+ * https://ionicframework.com/docs/layout/global-stylesheets
+ */
+
+/* Core CSS required for Ionic components to work properly */
+@import '~@ionic/angular/css/core.css';
+
+/* Basic CSS for apps built with Ionic */
+@import '~@ionic/angular/css/normalize.css';
+@import '~@ionic/angular/css/structure.css';
+@import '~@ionic/angular/css/typography.css';
+@import '~@ionic/angular/css/display.css';
+
+/* Optional CSS utils that can be commented out */
+@import '~@ionic/angular/css/padding.css';
+@import '~@ionic/angular/css/float-elements.css';
+@import '~@ionic/angular/css/text-alignment.css';
+@import '~@ionic/angular/css/text-transformation.css';
+@import '~@ionic/angular/css/flex-utils.css';
+
+/* Theme variables */
+$blue: (
+  050: #eff6ff,
+  100: #dbeafe,
+  200: #bfdbfe,
+  300: #93c5fd,
+  400: #60a5fa,
+  500: #3b82f6,
+  600: #2563eb,
+  700: #1d4ed8,
+  800: #1e40af,
+  900: #1e3a8a
+);
+
+$gray: (
+  050: #f8fafc,
+  100: #f1f5f9,
+  200: #e2e8f0,
+  300: #cbd5e1,
+  400: #94a3b8,
+  500: #64748b,
+  600: #475569,
+  700: #334155,
+  800: #1e293b,
+  900: #0f172a
+);
+
+$green: (
+  050: #f0fdf4,
+  100: #dcfce7,
+  200: #bbf7d0,
+  300: #86efac,
+  400: #4ade80,
+  500: #22c55e,
+  600: #16a34a,
+  700: #15803d,
+  800: #166534,
+  900: #14532d
+);
+
+$red: (
+  050: #fef2f2,
+  100: #fee2e2,
+  200: #fecaca,
+  300: #fca5a5,
+  400: #f87171,
+  500: #ef4444,
+  600: #dc2626,
+  700: #b91c1c,
+  800: #991b1b,
+  900: #7f1d1d
+);
+
+$pink: (
+  050: #fdf2f8,
+  100: #fce7f3,
+  200: #fbcfe8,
+  300: #f9a8d4,
+  400: #f472b6,
+  500: #ec4899,
+  600: #db2777,
+  700: #be185d,
+  800: #9d174d,
+  900: #831843
+);
+
+$yellow: (
+  050: #fefce8,
+  100: #fef9c3,
+  200: #fef08a,
+  300: #fde047,
+  400: #facc15,
+  500: #eab308,
+  600: #ca8a04,
+  700: #a16207,
+  800: #854d0e,
+  900: #713f12
+);
+
+h1 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: map-get($gray, 900);
+  margin: 4px 0;
+}
+
+h2 {
+  font-size: 1.125rem;
+  font-weight: 500;
+  color: map-get($gray, 900);
+  margin: 4px 0;
+}
+
+h3 {
+  font-size: 1rem;
+  font-weight: 500;
+  color: map-get($gray, 900);
+  margin: 4px 0;
+}
+
+p {
+  margin: 0;
+}
+
+a {
+  text-decoration: none;
+}
+
+input,
+textarea,
+select {
+  background-color: map-get($gray, 050);
+  color: map-get($gray, 900);
+  border: 1px solid map-get($gray, 300);
+  border-radius: 8px;
+  height: 50px;
+  width: 100%;
+  padding: 12px 16px;
+  appearance: none;
+  -webkit-appearance: none;
+
+  &:focus {
+    border: 1px solid map-get($blue, 500);
+  }
+
+  &::placeholder {
+    color: map-get($gray, 400);
+  }
+
+  &:disabled {
+    background-color: map-get($gray, 200);
+  }
+}
+
+textarea {
+  resize: vertical;
+}
+
+label {
+  display: block;
+  padding-bottom: 8px;
+  font-size: 1rem;
+  font-weight: 500;
+  color: map-get($gray, 900);
+}
+
+ion-label {
+  font-size: 0, 875rem;
+  color: map-get($gray, 900);
+}
+
+ion-grid {
+  --ion-grid-padding: 0;
+  --ion-grid-column-padding: 16px;
+  --ion-grid-column-padding-xs: 0;
+  --ion-grid-column-padding-sm: 0;
+}
+
+.text-xs.font-medium {
+  font-size: 0.75rem;
+  font-weight: 500;
+
+  &.text-gray-500 {
+    color: map-get($gray, 500);
+  }
+}
+
+.text-sm.font-medium {
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.gray-text {
+  font-size: 0.875rem;
+  color: map-get($gray, 500);
+}
+
+.gray-text-small {
+  font-size: 0.75rem;
+  color: map-get($gray, 500);
+}
+
+.dark-text {
+  font-size: 0.875rem;
+  color: map-get($gray, 900);
+}
+
+.dark-text-500 {
+  font-size: 1rem;
+  font-weight: 500;
+  color: map-get($gray, 900);
+}
+
+.blue-text-500 {
+  font-size: 1rem;
+  color: map-get($blue, 500);
+  font-weight: 500;
+}
+
+.black-label {
+  font-size: 0.875rem;
+  color: map-get($gray, 900);
+  font-weight: 500;
+}
+
+.gray-label {
+  font-size: 0.875rem;
+  color: map-get($gray, 500);
+  font-weight: 500;
+}
+
+.blue-label {
+  font-size: 0.875rem;
+  color: map-get($blue, 500);
+  font-weight: 500;
+}
+
+.pink-label {
+  font-size: 0.875rem;
+  color: map-get($pink, 500);
+  font-weight: 500;
+}
+
+.green-label {
+  font-size: 0.875rem;
+  color: map-get($green, 500);
+  font-weight: 500;
+}
+
+.font-weight-500 {
+  font-weight: 500;
+}
+
+.font-weight-600 {
+  font-weight: 600;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.error-label {
+  color: map-get($red, 500);
+}
+
+.padding-b0 {
+  padding-bottom: 0 !important;
+}
+
+.padding-txs {
+  padding-top: 4px;
+}
+
+.padding-ts {
+  padding-top: 8px;
+}
+
+.padding-tm {
+  padding-top: 16px;
+}
+
+.padding-tl {
+  padding-top: 32px;
+}
+
+.padding-bxs {
+  padding-bottom: 4px;
+}
+
+.padding-bs {
+  padding-bottom: 8px;
+}
+
+.padding-m {
+  padding: 16px;
+}
+
+.padding-bm {
+  padding-bottom: 16px;
+}
+
+.padding-bl {
+  padding-bottom: 32px;
+}
+
+.padding-rs {
+  padding-right: 8px;
+}
+
+.padding-ls {
+  padding-left: 8px;
+}
+
+.padding-lm {
+  padding-left: 16px;
+}
+
+.padding-ll {
+  padding-left: 32px;
+}
+
+.padding-s {
+  padding: 8px;
+}
+
+.padding-m {
+  padding: 16px;
+}
+
+.paddingless {
+  padding: 0;
+}
+
+.margin-bxs {
+  margin-bottom: 4px;
+}
+
+.margin-bm {
+  margin-bottom: 16px;
+}
+
+.margin-bl {
+  margin-bottom: 32px;
+}
+
+.margin-rl {
+  margin-right: 32px;
+}
+
+.margin-tm {
+  margin-top: 16px;
+}
+
+.margin-tl {
+  margin-top: 32px;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.full-height {
+  height: 100%;
+}
+
+.fixed-width-160 {
+  width: 160px;
+}
+
+.max-width-640 {
+  max-width: 640px;
+  flex-grow: 1;
+}
+
+.flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.flex-row {
+  display: flex;
+  flex-direction: row;
+}
+
+.justify-content-center {
+  display: flex;
+  justify-content: center;
+}
+
+.between {
+  justify-content: space-between;
+}
+
+.gap-4 {
+  gap: 4px;
+}
+
+.gap-8 {
+  gap: 8px;
+}
+
+.gap-16 {
+  gap: 16px;
+}
+
+.gap-32 {
+  gap: 32px;
+}
+
+.col-padding-sm {
+  @media screen and (max-width: 768px) {
+    padding-bottom: 32px;
+  }
+}
+
+.card {
+  box-shadow:
+    0px 1px 3px rgba(0, 0, 0, 0.1),
+    0px 1px 2px -1px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  background-color: map-get($gray, 050);
+}
+
+.background-gray-050 {
+  background-color: map-get($gray, 050);
+}
+
+.background-gray-100 {
+  background-color: map-get($gray, 100);
+}
+
+.background-white {
+  background-color: white;
+}
+
+.error-input {
+  border: 1px solid map-get($red, 500);
+}
+
+.divider-line {
+  background-color: map-get($gray, 200);
+  height: 1px;
+  flex: 1;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.hover-gray-050 {
+  &:hover {
+    background-color: map-get($gray, 050);
+    transition: 150ms;
+  }
+}
+
+.hover-gray-100 {
+  &:hover {
+    background-color: map-get($gray, 100);
+    transition: 150ms;
+  }
+}
+
+.hover-gray-200 {
+  &:hover {
+    background-color: map-get($gray, 200);
+    transition: 150ms;
+  }
+}
+
+.border-radius-8 {
+  border-radius: 8px;
+}
+
+.border-bottom {
+  border-bottom: 1px solid map-get($gray, 200);
+
+  &:last-child {
+    border-bottom: none;
+  }
+}
+
+.shadow {
+  box-shadow:
+    0px 1px 3px rgba(0, 0, 0, 0.1),
+    0px 1px 2px -1px rgba(0, 0, 0, 0.1);
+}
+
+.route-link-button {
+  color: map-get($gray, 900);
+  background-color: none;
+  padding: 12px 16px;
+  border: 1px solid map-get($gray, 300);
+  border-radius: 8px;
+
+  text-decoration: none;
+  font-size: 0.875rem;
+  font-weight: 500;
+
+  &.active-route {
+    border: 1px solid var(--ion-color-primary);
+    color: white;
+    background-color: var(--ion-color-primary);
+  }
+}
+
+.dropdown-chevron {
+  background: url('./assets/app-icons/chevron-down-gray500.svg') no-repeat right
+    map-get($gray, 050);
+  -webkit-appearance: none;
+  appearance: none;
+  background-position-x: calc(100% - 0.5rem);
+}
+
+.disable-select {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.text-ellipsis {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}

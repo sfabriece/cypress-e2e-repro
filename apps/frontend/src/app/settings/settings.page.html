@@ -1,0 +1,27 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Settings</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-grid fixed class="padding-tl">
+    <ion-col class="flex-column col-padding-sm">
+      <ion-row class="margin-bm">
+        <h2>Settings</h2>
+      </ion-row>
+      <ion-row class="gap-16">
+        <a
+          routerLink="/settings/company"
+          class="route-link-button"
+          routerLinkActive="active-route"
+          >General</a
+        >
+      </ion-row>
+    </ion-col>
+  </ion-grid>
+  <router-outlet></router-outlet>
+</ion-content>

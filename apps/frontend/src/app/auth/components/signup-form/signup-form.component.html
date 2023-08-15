@@ -1,0 +1,128 @@
+<form [formGroup]="signupForm" (ngSubmit)="submit()" class="flex-column gap-16">
+  <div>
+    <label
+      data-test="signup-email-helper-text"
+      [class.error-label]="signupForm.get('email')?.errors && formSubmitted"
+      for="email"
+      >Email
+      <div
+        *ngIf="signupForm.get('email')?.hasError('required') && formSubmitted"
+      >
+        is required
+      </div>
+      <div *ngIf="signupForm.get('email')?.hasError('email') && formSubmitted">
+        is invalid
+      </div></label
+    >
+    <input
+      data-test="signup-email"
+      formControlName="email"
+      type="email"
+      autocomplete="email"
+      class="full-width"
+      placeholder="kari.nordmann@petmanager.com"
+      [class.error-input]="signupForm.get('email')?.errors && formSubmitted"
+    />
+  </div>
+  <div>
+    <label
+      data-test="signup-password-helper-text"
+      [class.error-label]="signupForm.get('password')?.errors && formSubmitted"
+      for="password"
+      >Password
+      <div
+        *ngIf="
+          signupForm.get('password')?.hasError('required') && formSubmitted
+        "
+      >
+        is required
+      </div>
+      <div
+        *ngIf="
+          signupForm.get('password')?.hasError('minlength') && formSubmitted
+        "
+      >
+        requires at least 8 characters
+      </div>
+      <div
+        *ngIf="
+          signupForm.get('password')?.hasError('maxlength') && formSubmitted
+        "
+      >
+        requires at most 64 characters
+      </div>
+      <div *ngIf="signupForm.get('password')?.hasError('pwned')">
+        is compromised
+      </div>
+    </label>
+    <input
+      data-test="signup-password"
+      formControlName="password"
+      type="password"
+      autocomplete="current-password"
+      class="full-width"
+      placeholder="********"
+      (onChange)="pwMatch()"
+      [class.error-input]="signupForm.get('password')?.errors && formSubmitted"
+    />
+    <innut-password-strength
+      [password]="signupForm.get('password')?.value"
+    ></innut-password-strength>
+  </div>
+  <div>
+    <label
+      data-test="signup-confirm-password-helper-text"
+      [class.error-label]="signupForm.get('confirm')?.errors && formSubmitted"
+      for="confirm"
+      >Confirm password
+      <div
+        *ngIf="signupForm.get('confirm')?.hasError('required') && formSubmitted"
+      >
+        is required
+      </div>
+      <div
+        *ngIf="
+          signupForm.get('confirm')?.hasError('minlength') && formSubmitted
+        "
+      >
+        requires at least 8 characters
+      </div>
+      <div
+        *ngIf="
+          signupForm.get('confirm')?.hasError('maxlength') && formSubmitted
+        "
+      >
+        requires at most 64 characters
+      </div>
+      <div class="error-label" *ngIf="pwConfirmError && formSubmitted">
+        does not match
+      </div>
+    </label>
+
+    <input
+      data-test="signup-confirm-password"
+      formControlName="confirm"
+      type="password"
+      autocomplete="current-password"
+      class="full-width"
+      placeholder="********"
+      (ngModelChange)="pwMatch()"
+      [class.error-input]="signupForm.get('confirm')?.errors && formSubmitted"
+    />
+  </div>
+  <ion-button
+    data-test="signup-submit"
+    type="submit"
+    expand="block"
+    size="large"
+    class="margin-tm"
+    >Create account</ion-button
+  >
+  <ion-button
+    data-test="signin-link"
+    fill="clear"
+    color="secondary"
+    routerLink="/auth/login"
+    >or Sign in</ion-button
+  >
+</form>

@@ -1,0 +1,33 @@
+<ng-container *ngIf="pet$ | async as pet">
+  <ion-header>
+    <ion-toolbar>
+      <ion-title>Pet</ion-title>
+    </ion-toolbar>
+    <div *ngIf="pet.status === 'DRAFT'" class="draft-indicator">
+      <p>Preview</p>
+    </div>
+  </ion-header>
+
+  <ion-content class="ion-padding">
+    <div class="justify-content-center">
+      <div class="flex-column gap-32 max-width-640">
+        <ion-row class="ion-justify-content-between ion-align-items-center">
+        </ion-row>
+
+        <ion-row class="ion-justify-content-between ion-align-items-center">
+        </ion-row>
+
+        <ion-row>
+          <div class="margin-rl">
+            <label>Comment</label>
+            <p class="gray-text">{{ pet.description }}</p>
+          </div>
+        </ion-row>
+
+        <div class="flex-column gap-16"></div>
+
+        <ion-row class="ion-justify-content-end"> </ion-row>
+      </div>
+    </div>
+  </ion-content>
+</ng-container>

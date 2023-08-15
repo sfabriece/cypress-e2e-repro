@@ -1,0 +1,10 @@
+.form-container {
+  padding: 32px 32px;
+  max-width: 480px;
+  margin: 32px auto 32px;
+
+  @media screen and (max-width: 480px) {
+    border-radius: 0;
+    padding: 32px 16px;
+  }
+}

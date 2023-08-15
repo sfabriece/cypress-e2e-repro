@@ -1,0 +1,31 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Onboarding</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-row class="ion-justify-content-center margin-tl">
+    <ion-col>
+      <h1 data-test="onboarding-title" class="ion-text-center">Welcome!</h1>
+    </ion-col>
+  </ion-row>
+  <ng-container *ngIf="currentStep$ | async as step">
+    <div class="card form-container">
+      <innut-step-indicator [step]="step"></innut-step-indicator>
+
+      <ng-container *ngIf="step === 1"
+        ><innut-user-form
+          [submitButtonText]="'Neste >'"
+          (isFormValid)="nextStep($event, step)"
+        ></innut-user-form
+      ></ng-container>
+      <ng-container *ngIf="step === 2"
+        ><innut-store-form
+          [submitButtonText]="'Complete'"
+          (isFormValid)="nextStep($event, step)"
+        ></innut-store-form
+      ></ng-container>
+    </div>
+  </ng-container>
+</ion-content>

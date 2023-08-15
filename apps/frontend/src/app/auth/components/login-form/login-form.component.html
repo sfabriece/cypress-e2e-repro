@@ -1,0 +1,83 @@
+<form [formGroup]="loginForm" (ngSubmit)="login()" class="flex-column gap-16">
+  <div>
+    <label
+      data-test="signin-email-helper-text"
+      [class.error-label]="loginForm.get('email')?.errors && formSubmitted"
+      for="email"
+      >Email
+      <div
+        *ngIf="loginForm.get('email')?.hasError('required') && formSubmitted"
+      >
+        is required
+      </div>
+      <div *ngIf="loginForm.get('email')?.hasError('email') && formSubmitted">
+        is invalid
+      </div></label
+    >
+    <input
+      data-test="signin-email"
+      formControlName="email"
+      type="email"
+      autocomplete="email"
+      class="full-width"
+      placeholder="kari.nordmann@petmanager.com"
+      (keyup.enter)="login()"
+      [class.error-input]="loginForm.get('email')?.errors && formSubmitted"
+    />
+  </div>
+  <div>
+    <label
+      data-test="signin-password-helper-text"
+      [class.error-label]="loginForm.get('password')?.errors && formSubmitted"
+      for="password"
+      >Password
+      <div
+        *ngIf="loginForm.get('password')?.hasError('required') && formSubmitted"
+      >
+        is required
+      </div>
+      <div
+        *ngIf="
+          loginForm.get('password')?.hasError('minlength') && formSubmitted
+        "
+      >
+        requires at least 8 characters
+      </div>
+      <div
+        *ngIf="
+          loginForm.get('password')?.hasError('maxlength') && formSubmitted
+        "
+      >
+        requires at most 64 characters
+      </div>
+    </label>
+    <input
+      data-test="signin-password"
+      #passwordfield
+      formControlName="password"
+      type="password"
+      autocomplete="current-password"
+      class="full-width"
+      placeholder="********"
+      (keyup.enter)="login()"
+      [class.error-input]="loginForm.get('password')?.errors && formSubmitted"
+    />
+  </div>
+
+  <ion-button
+    data-test="signin-submit"
+    expand="block"
+    size="large"
+    class="margin-tm"
+    type="submit"
+    >Sign in</ion-button
+  >
+
+  <ion-button
+    data-test="signup"
+    fill="clear"
+    color="secondary"
+    routerLink="/auth/signup"
+    >or create an account</ion-button
+  >
+</form>

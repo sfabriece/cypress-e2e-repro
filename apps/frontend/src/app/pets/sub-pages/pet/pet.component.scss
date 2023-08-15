@@ -1,0 +1,13 @@
+@import './../../../../styles.scss';
+
+textarea {
+  min-height: 6rem;
+}
+
+.date-field {
+  width: initial;
+}
+
+ion-modal {
+  --min-height: 80%;
+}

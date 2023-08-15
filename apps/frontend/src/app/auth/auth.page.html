@@ -1,0 +1,19 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Pet Manager</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-row class="ion-justify-content-center margin-tl">
+    <ion-col>
+      <h1 data-test="auth-title" class="ion-text-center">{{ headerText }}</h1>
+    </ion-col>
+  </ion-row>
+
+  <!-- Login Form -->
+
+  <div class="card form-container">
+    <router-outlet></router-outlet>
+  </div>
+</ion-content>

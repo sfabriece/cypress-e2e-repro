@@ -1,0 +1,55 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Pets</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <div class="justify-content-center">
+    <div class="max-width-640">
+      <div class="padding-tl padding-bl flex-row gap-16">
+        <ion-button routerLink="/pets/new">New Pet</ion-button>
+      </div>
+      <div class="padding-bl flex-column gap-16">
+        <h2 class="ion-margin-bottom">pets</h2>
+        <div>
+          <label for="filter">Status</label>
+          <select
+            class="full-width dropdown-chevron ion-margin-bottom"
+            [formControl]="filter"
+          >
+            <option value="">Alle pets</option>
+            <option value="SUBMITTED">Submitted</option>
+            <option value="RETURNED">Returned</option>
+            <option value="DRAFT">Draft</option>
+          </select>
+        </div>
+        <div>
+          <label for="sort">Sorting</label>
+          <select class="full-width dropdown-chevron" [formControl]="sort">
+            <option value="number">Pet Number</option>
+            <option value="submitDate">Submit date</option>
+            <option value="status">Status</option>
+          </select>
+        </div>
+      </div>
+
+      <innut-pet-list [pets]="(filteredPets$ | async)!"></innut-pet-list>
+      <div
+        *ngIf="!(filteredPets$ | async)?.length"
+        class="ion-padding flex-column gap-16 ion-align-items-center ion-justify-content-center"
+      >
+        <img
+          src="../../../../assets/illustrations/empty-state-pet.svg"
+          alt=""
+          width="256px"
+        />
+        <p *ngIf="!(pets$ | async)?.length">No pets</p>
+        <p *ngIf="(pets$ | async)?.length">No pets</p>
+      </div>
+    </div>
+  </div>
+</ion-content>

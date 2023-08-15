@@ -1,0 +1,104 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+generator json {
+  provider = "prisma-json-types-generator"
+  // namespace = "PrismaJson"
+  // clientOutput = "<finds it automatically>"
+  // (./ -> relative to schema, or an importable path to require() it)
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Session {
+  id               String   @id @default(cuid()) @db.VarChar
+  refreshTokenHash String   @map("refresh_token_hash") @db.VarChar
+  userId           String   @unique @map("user_id") @db.VarChar
+  createdAt        DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt        DateTime @default(now()) @updatedAt @map("updated_at") @db.Timestamptz(6)
+  user             User     @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+
+  @@index([refreshTokenHash])
+  @@map("sessions")
+}
+
+model Credentials {
+  id                 String   @id @default(cuid()) @db.VarChar
+  passwordHash       String   @map("password_hash") @db.VarChar
+  resetPasswordToken String?  @map("reset_password_token") @db.VarChar
+  userId             String   @unique @map("user_id") @db.VarChar
+  createdAt          DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt          DateTime @default(now()) @updatedAt @map("updated_at") @db.Timestamptz(6)
+  user               User     @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+
+  @@index([passwordHash])
+  @@index([resetPasswordToken])
+  @@map("user_credentials")
+}
+
+model User {
+  id                    String       @id @default(cuid()) @db.VarChar
+  email                 String       @unique @db.VarChar
+  firstName             String?      @map("firstname") @db.VarChar
+  lastName              String?      @map("lastname") @db.VarChar
+  avatarUrl             String?      @map("avatar_url") @db.VarChar
+  phone                 String?      @db.VarChar
+  finishedOnboarding    Boolean      @default(false) @map("finished_onboarding") @db.Boolean
+  currentOnboardingStep Int?         @map("current_onboarding_step") @db.Integer
+  createdAt             DateTime     @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt             DateTime     @default(now()) @updatedAt @map("updated_at") @db.Timestamptz(6)
+  stores                Store[]
+  session               Session?
+  credentials           Credentials?
+  pets                  Pet[]
+
+  @@map("users")
+}
+
+model Store {
+  id                 String   @id @default(cuid()) @db.VarChar
+  name               String   @unique @db.VarChar
+  organizationNumber String   @map("organization_number") @db.VarChar
+  streetAddress      String   @map("street_address") @db.VarChar
+  postalCode         String   @map("postal_code") @db.VarChar
+  city               String   @map("city") @db.VarChar
+  country            String   @map("country") @db.VarChar
+  contactEmail       String?  @map("contact_email") @db.VarChar
+  phone              String?  @map("phone_number") @db.VarChar
+  ownerId            String   @map("user_id") @db.VarChar
+  createdAt          DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt          DateTime @default(now()) @updatedAt @map("updated_at") @db.Timestamptz(6)
+  owner              User     @relation(fields: [ownerId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  pets               Pet[]
+
+  @@map("stores")
+}
+
+model Pet {
+  id          String   @id @default(cuid()) @db.VarChar
+  status      String   @db.VarChar
+  kind        String   @default("MAMMAL") @db.VarChar
+  storeId     String   @map("store_id") @db.VarChar
+  userId      String   @map("user_id") @db.VarChar
+  number      Int?     @db.Integer // Add partial index
+  description String?  @db.VarChar
+  submitDate  DateTime @default(now()) @map("submitted_at") @db.Timestamptz(6)
+
+  createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt DateTime @default(now()) @updatedAt @map("updated_at") @db.Timestamptz(6)
+
+  store Store @relation(fields: [storeId], references: [id], onDelete: NoAction, onUpdate: Cascade)
+  user  User  @relation(fields: [userId], references: [id], onDelete: NoAction, onUpdate: Cascade)
+
+  @@unique([storeId, number])
+  @@index([storeId, kind])
+  @@index([storeId, status])
+  @@map("pets")
+}

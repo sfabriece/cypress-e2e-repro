@@ -1,0 +1,73 @@
+<ng-container *ngIf="pet$ | async as pet">
+  <ion-header>
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-menu-button></ion-menu-button>
+      </ion-buttons>
+      <ion-title>Pet</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-content class="ion-padding">
+    <div class="justify-content-center">
+      <div class="padding-tl flex-column max-width-640 gap-32">
+        <ion-row class="ion-justify-content-between ion-align-items-center">
+          <div class="ion-align-items-center flex-row gap-8">
+            <h1 data-test="petsubmit-title">Pet {{ pet.number }}</h1>
+            <ion-icon
+              data-test="petsubmit-preview-pet"
+              slot="end"
+              name="eye-outline"
+              size="large"
+              color="primary"
+              class="bold cursor-pointer"
+              (click)="openPet(pet.id)"
+            ></ion-icon>
+          </div>
+          <innut-badge
+            data-test="petsubmit-status"
+            [status]="pet.status"
+          ></innut-badge>
+        </ion-row>
+
+        <div class="flex-column gap-16">
+          <h2>Details:</h2>
+          <ion-row>
+            <div class="margin-rl">
+              <p data-test="petsubmit-number" class="gray-text">
+                {{ pet.number }}
+              </p>
+            </div>
+          </ion-row>
+          <ion-row>
+            <ion-col class="margin-rl">
+              <label>Date</label>
+              <p data-test="petsubmit-date" class="gray-text">
+                {{ pet.submitDate | date: 'mediumDate' : '+0200' : 'no' }}
+              </p>
+            </ion-col>
+          </ion-row>
+
+          <ion-row>
+            <div class="margin-rl">
+              <label>Comment</label>
+              <p data-test="petsubmit-general-comment" class="gray-text">
+                {{ pet.description }}
+              </p>
+            </div>
+          </ion-row>
+        </div>
+
+        <div class="ion-justify-content-end flex-row gap-16">
+          <ion-button
+            data-test="petsubmit-duplicate"
+            expand="block"
+            fill="clear"
+            (click)="duplicatePet(pet.id)"
+            >Duplicate</ion-button
+          >
+        </div>
+      </div>
+    </div>
+  </ion-content>
+</ng-container>

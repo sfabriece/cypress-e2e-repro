@@ -1,0 +1,23 @@
+.responsive-buttons {
+  width: 47%;
+
+  @media screen and (max-width: 640px) {
+    width: 100%;
+  }
+}
+
+.chart-height {
+  min-height: 340px;
+
+  @media screen and (max-width: 640px) {
+    min-height: 290px;
+  }
+
+  @media screen and (max-width: 480px) {
+    min-height: 250px;
+  }
+}
+
+.pending {
+  height: 50vh;
+}

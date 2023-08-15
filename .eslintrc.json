@@ -1,0 +1,96 @@
+{
+  "root": true,
+  "ignorePatterns": ["**/*"],
+  "extends": ["prettier"],
+  "plugins": ["@nx", "sonarjs", "unicorn"],
+  "overrides": [
+    {
+      "files": ["*.ts", "*.tsx", "*.js", "*.jsx"],
+      "extends": ["plugin:sonarjs/recommended", "plugin:unicorn/recommended"],
+      "rules": {
+        "@nx/enforce-module-boundaries": [
+          "error",
+          {
+            "enforceBuildableLibDependency": true,
+            "allowCircularSelfDependency": true,
+            "allow": [],
+            "depConstraints": [
+              {
+                "sourceTag": "scope:shared",
+                "onlyDependOnLibsWithTags": ["scope:api", "scope:shared"]
+              },
+              {
+                "sourceTag": "scope:frontend",
+                "onlyDependOnLibsWithTags": ["scope:shared", "scope:frontend"]
+              },
+              {
+                "sourceTag": "scope:api",
+                "onlyDependOnLibsWithTags": ["scope:shared", "scope:api"]
+              },
+              {
+                "sourceTag": "scope:web",
+                "onlyDependOnLibsWithTags": ["scope:shared", "scope:web"]
+              }
+            ]
+          }
+        ],
+        "unicorn/no-null": "off",
+        "sonarjs/prefer-immediate-return": "off",
+        "@typescript-eslint/no-unused-vars": [
+          "error",
+          {
+            "ignoreRestSiblings": true
+          }
+        ],
+        "unicorn/prevent-abbreviations": [
+          "error",
+          {
+            "allowList": {
+              "doc": true,
+              "i": true,
+              "id": true,
+              "idx": true
+            }
+          }
+        ]
+      }
+    },
+    {
+      "files": ["*.ts", "*.tsx"],
+      "extends": ["plugin:@nx/typescript"],
+      "rules": {
+        "curly": ["error"],
+        "unicorn/consistent-function-scoping": [
+          "error",
+          {
+            "checkArrowFunctions": false
+          }
+        ],
+        "unicorn/prefer-top-level-await": "off"
+      }
+    },
+    {
+      "files": ["*.js", "*.jsx"],
+      "extends": ["plugin:@nx/javascript"],
+      "rules": {}
+    },
+    {
+      "files": ["*.spec.ts", "*.spec.tsx", "*.spec.js", "*.spec.jsx"],
+      "plugins": ["jest", "chai-expect"],
+      "extends": ["plugin:chai-expect/recommended", "plugin:jest/recommended"],
+      "env": {
+        "jest": true
+      },
+      "rules": {
+        "unicorn/prevent-abbreviations": "off",
+        "jest/expect-expect": [
+          "error",
+          {
+            "assertFunctionNames": ["expect", "request.**.expect"],
+            "additionalTestBlockFunctions": []
+          }
+        ]
+      }
+    }
+  ]
+}

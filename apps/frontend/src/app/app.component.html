@@ -1,0 +1,57 @@
+<ion-app>
+  <ion-header>
+    <ion-toolbar [color]="(routeData$ | async)?.['color']">
+      <ion-buttons
+        slot="start"
+        *ngIf="(isAuthenticated$ | async) && (isOnboarding$ | async) === false"
+      >
+        <ion-menu-button *ngIf="isDesktop$ | async"></ion-menu-button>
+      </ion-buttons>
+      <ion-title>{{ (routeData$ | async)?.['title'] }}</ion-title>
+
+      <img
+        src="../assets/icon/logo-gray-green.svg"
+        width="72"
+        height="38"
+        class="head-img cursor-pointer"
+        routerLink="/"
+      />
+    </ion-toolbar>
+  </ion-header>
+  <ion-split-pane contentId="main" [disabled]="hideSplitpane$ | async">
+    <ion-menu menuId="first" contentId="main">
+      <ion-content>
+        <innut-side-nav
+          [user]="user$ | async"
+          (closeMenu)="closeMenu()"
+          (logout)="logout()"
+        ></innut-side-nav>
+      </ion-content>
+    </ion-menu>
+
+    <ion-router-outlet id="main"></ion-router-outlet>
+  </ion-split-pane>
+
+  <ng-container
+    *ngIf="(isAuthenticated$ | async) && (isDesktop$ | async) === false"
+  >
+    <ion-tabs>
+      <ion-tab-bar slot="bottom">
+        <ion-tab-button tab="dashboard">
+          <ion-label>Overview</ion-label>
+          <ion-icon name="home-outline"></ion-icon>
+        </ion-tab-button>
+
+        <ion-tab-button tab="pets">
+          <ion-icon name="send-outline"></ion-icon>
+          <ion-label>pets</ion-label>
+        </ion-tab-button>
+
+        <ion-tab-button tab="settings">
+          <ion-icon name="cog-outline"></ion-icon>
+          <ion-label>Settings</ion-label>
+        </ion-tab-button>
+      </ion-tab-bar>
+    </ion-tabs>
+  </ng-container>
+</ion-app>

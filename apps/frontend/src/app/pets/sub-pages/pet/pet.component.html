@@ -1,0 +1,168 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>{{ petId || 'New Pet' }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding ion-justify-content-center">
+  <div class="justify-content-center">
+    <form
+      data-test="pet-form"
+      [formGroup]="petForm"
+      (ngSubmit)="onSubmit()"
+      class="flex-column padding-tl max-width-640 gap-32"
+    >
+      <ion-row
+        class="ion-justify-content-between ion-align-items-center"
+        style="height: 300px"
+      >
+        <h1 data-test="pet-title">
+          {{ petId === 'new' ? 'New pet' : 'Pet' }}
+        </h1>
+        <innut-badge
+          data-test="pet-status"
+          [status]="petStatus || 'DRAFT'"
+        ></innut-badge>
+      </ion-row>
+      <div class="card background-gray-050 ion-padding">
+        <div class="ion-justify-content-between flex-row">
+          <select
+            data-test="pet-kind-select"
+            formControlName="kind"
+            class="full-width dropdown-chevron"
+            [class.error-input]="petForm.get('kind')?.errors && formSubmitted"
+          >
+            <option disabled [value]="null">Pick kind</option>
+            <option
+              *ngFor="let kind of ['MAMMAL', 'REPTIL', 'BIRD', 'OTHER']"
+              [value]="kind"
+            >
+              {{ kind }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <div class="card background-gray-050 ion-padding">
+          <h2 class="padding-bm">Details</h2>
+          <div>
+            <label data-test="pet-date-helper-text" for="date"
+              >Date
+              <div
+                class="error-label"
+                *ngIf="petForm.get('date')?.errors && formSubmitted"
+              >
+                is required
+              </div></label
+            >
+            <ion-row class="padding-bm ion-align-items-center gap-16">
+              <input
+                data-test="pet-date"
+                type="date"
+                formControlName="date"
+                class="date-field"
+              />
+              <p
+                class="blue-text-500 cursor-pointer"
+                (click)="setDateToday()"
+                *ngIf="petForm.enabled"
+              >
+                I dag
+              </p>
+            </ion-row>
+          </div>
+        </div>
+      </div>
+
+      <div class="card background-gray-050 ion-padding">
+        <label
+          data-test="pet-general-comment-helper-text"
+          for="description"
+          [class.error-label]="
+            petForm.get('description')?.errors && formSubmitted
+          "
+          >Comment
+          <div *ngIf="petForm.get('description')?.errors && formSubmitted">
+            is required
+          </div></label
+        >
+        <textarea
+          data-test="pet-general-comment"
+          type="text"
+          formControlName="description"
+          class="full-width"
+          placeholder="Beskriv oppdraget eller tjenesten..."
+          [class.error-input]="
+            petForm.get('description')?.errors && formSubmitted
+          "
+        ></textarea>
+      </div>
+
+      <div
+        class="ion-justify-content-between flex-row"
+        style="margin-top: 150px"
+      >
+        <div class="flex-row gap-16">
+          <ion-button
+            data-test="pet-preview-button"
+            *ngIf="
+              (petStatus !== 'SUBMITTED' && petId !== 'new') ||
+              petStatus === 'SUBMITTED'
+            "
+            fill="clear"
+            expand="block"
+            color="dark"
+            (click)="openPreview()"
+          >
+            <ion-icon slot="end" name="eye-outline"></ion-icon
+            >Preview</ion-button
+          >
+          <ion-button
+            data-test="pet-delete-button"
+            fill="clear"
+            expand="block"
+            color="danger"
+            (click)="onDelete()"
+            *ngIf="petStatus === 'DRAFT'"
+          >
+            <ion-icon slot="end" name="trash-outline"></ion-icon
+            >Remove</ion-button
+          >
+        </div>
+        <div class="flex-row gap-16">
+          <ion-button
+            data-test="pet-save-button"
+            type="submit"
+            expand="block"
+            fill="{{ petId === 'new' ? 'solid' : 'outline' }}"
+            *ngIf="petStatus !== 'SUBMITTED'"
+            >{{ petId === 'new' ? 'Submit Pet' : 'Save' }}
+            <ion-icon
+              *ngIf="petId === 'new'"
+              slot="end"
+              name="add-outline"
+            ></ion-icon>
+            <ion-icon
+              *ngIf="petId !== 'new'"
+              slot="end"
+              name="save-outline"
+            ></ion-icon>
+          </ion-button>
+          <ion-button
+            data-test="pet-submit-button"
+            *ngIf="petId !== 'new' && petStatus !== 'SUBMITTED'"
+            expand="block"
+            (click)="onSubmitPet()"
+          >
+            <ion-icon slot="end" name="send-outline"></ion-icon>Submit
+            pet</ion-button
+          >
+        </div>
+      </div>
+    </form>
+  </div>
+</ion-content>

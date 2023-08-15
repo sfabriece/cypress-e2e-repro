@@ -1,0 +1,13 @@
+@import './../../../../styles.scss';
+
+.border-bottom {
+  border-bottom: 1px solid map-get($gray, 200);
+}
+
+.border-bottom:last-child {
+  border-bottom: 0;
+}
+
+.max-width-70 {
+  max-width: 70%;
+}

@@ -1,0 +1,21 @@
+@import './../../../../styles.scss';
+
+.delivery-container {
+  background-color: map-get($green, 050);
+  border: 1px solid map-get($green, 200);
+  border-radius: 8px;
+  padding: 24px;
+}
+
+button {
+  background-color: map-get($blue, 500);
+  color: white;
+  padding: 12px 20px 12px 20px;
+  border-radius: 0 8px 8px 0;
+  width: 40%;
+}
+
+input {
+  border-radius: 8px 0 0 8px;
+  width: 60%;
+}

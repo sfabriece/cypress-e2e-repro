@@ -1,0 +1,182 @@
+<div class="card padding-m flex-column gap-16">
+  <h2>About Store</h2>
+
+  <ng-container
+    *ngIf="finishedOnboardingWrapper$ | async as finishedOnboardingWrapper"
+  >
+    <form
+      *ngIf="storeWrapper$ | async as storeWrapper"
+      [formGroup]="storeForm"
+      (ngSubmit)="submit(finishedOnboardingWrapper.finishedOnboarding)"
+      class="flex-column gap-16"
+    >
+      <div>
+        <label
+          for="name"
+          [class.error-label]="storeForm.get('name')?.errors && formSubmitted"
+          >Name
+          <div *ngIf="storeForm.get('name')?.errors && formSubmitted">
+            is required
+          </div></label
+        >
+        <input
+          data-test="storeform-storename"
+          formControlName="name"
+          type="text"
+          placeholder="Kari Nordmann ENK"
+          (keyup)="
+            handleKeyUp($event, finishedOnboardingWrapper.finishedOnboarding)
+          "
+          [class.error-input]="storeForm.get('name')?.errors && formSubmitted"
+        />
+      </div>
+      <div>
+        <label
+          for="organizationNumber"
+          [class.error-label]="
+            storeForm.get('organizationNumber')?.errors && formSubmitted
+          "
+          >Vat number
+          <div
+            *ngIf="
+              storeForm.get('organizationNumber')?.hasError('pattern') &&
+              formSubmitted
+            "
+          >
+            must be valid
+          </div>
+          <div
+            *ngIf="
+              storeForm.get('organizationNumber')?.hasError('required') &&
+              formSubmitted
+            "
+          >
+            is required
+          </div>
+        </label>
+        <input
+          data-test="storeform-vatnumber"
+          formControlName="organizationNumber"
+          type="text"
+          placeholder="123456789"
+          (keyup)="
+            handleKeyUp($event, finishedOnboardingWrapper.finishedOnboarding)
+          "
+          [class.error-input]="
+            storeForm.get('organizationNumber')?.errors && formSubmitted
+          "
+        />
+      </div>
+      <form formGroupName="address">
+        <div>
+          <label
+            for="streetAddress"
+            [class.error-label]="
+              storeForm.get('address.streetAddress')?.errors && formSubmitted
+            "
+            >Address
+            <div
+              *ngIf="
+                storeForm.get('address.streetAddress')?.errors && formSubmitted
+              "
+            >
+              is required
+            </div></label
+          >
+          <input
+            data-test="storeform-address"
+            formControlName="streetAddress"
+            type="text"
+            placeholder="Inkognitogata 1"
+            (keyup)="
+              handleKeyUp($event, finishedOnboardingWrapper.finishedOnboarding)
+            "
+            [class.error-input]="
+              storeForm.get('address.streetAddress')?.errors && formSubmitted
+            "
+          />
+        </div>
+        <ion-row class="margin-tm gap-16">
+          <div>
+            <label
+              for="postalCode"
+              [class.error-label]="
+                storeForm.get('address.postalCode')?.errors && formSubmitted
+              "
+              >Zip code
+              <div
+                *ngIf="
+                  storeForm.get('address.postalCode')?.hasError('pattern') &&
+                  formSubmitted
+                "
+              >
+                must be valid
+              </div>
+              <div
+                *ngIf="
+                  storeForm.get('address.postalCode')?.hasError('required') &&
+                  formSubmitted
+                "
+              >
+                is required
+              </div></label
+            >
+            <input
+              data-test="storeform-postalcode"
+              formControlName="postalCode"
+              type="text"
+              placeholder="1234"
+              class="zip-field"
+              (keyup)="
+                handleKeyUp(
+                  $event,
+                  finishedOnboardingWrapper.finishedOnboarding
+                )
+              "
+              [class.error-input]="
+                storeForm.get('address.postalCode')?.errors && formSubmitted
+              "
+            />
+          </div>
+          <div>
+            <label
+              for="city"
+              [class.error-label]="
+                storeForm.get('address.city')?.errors && formSubmitted
+              "
+              >City
+              <div
+                *ngIf="storeForm.get('address.city')?.errors && formSubmitted"
+              >
+                is required
+              </div></label
+            >
+            <input
+              data-test="storeform-city"
+              formControlName="city"
+              type="text"
+              placeholder="Oslo"
+              (keyup)="
+                handleKeyUp(
+                  $event,
+                  finishedOnboardingWrapper.finishedOnboarding
+                )
+              "
+              [class.error-input]="
+                storeForm.get('address.city')?.errors && formSubmitted
+              "
+            />
+          </div>
+        </ion-row>
+      </form>
+
+      <ion-button
+        data-test="storeform-submit"
+        expand="block"
+        type="submit"
+        [attr.disabled]="!storeForm.dirty"
+        >{{ submitButtonText }}</ion-button
+      >
+    </form>
+  </ng-container>
+</div>

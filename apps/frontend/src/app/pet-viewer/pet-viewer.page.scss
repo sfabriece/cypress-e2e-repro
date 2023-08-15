@@ -1,0 +1,18 @@
+@import './../../styles.scss';
+
+.payment-details-wrapper {
+  border: 1px solid map-get($green, 200);
+  background-color: map-get($green, 050);
+  border-radius: 8px;
+  padding: 16px;
+}
+
+.draft-indicator {
+  display: flex;
+  justify-content: center;
+  background-color: map-get($yellow, 100);
+  border-radius: 8px;
+  padding: 8px;
+  margin-bottom: 16px;
+  color: map-get($yellow, 900);
+}

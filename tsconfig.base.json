@@ -1,0 +1,36 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "rootDir": ".",
+    "sourceMap": true,
+    "declaration": false,
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "importHelpers": true,
+    "target": "ESNext",
+    "module": "esnext",
+    "lib": ["es2017", "dom"],
+    "skipLibCheck": true,
+    "skipDefaultLibCheck": true,
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "useDefineForClassFields": false,
+    "strictPropertyInitialization": false,
+    "baseUrl": ".",
+    "paths": {
+      "@api": ["apps/api/src/index.ts"],
+      "@api/auth": ["apps/api/src/app/auth/index.ts"],
+      "@api/common": ["apps/api/src/app/common/index.ts"],
+      "@api/store": ["apps/api/src/app/store/index.ts"],
+      "@api/config": ["apps/api/src/app/config/index.ts"],
+      "@api/data": ["apps/api/src/app/data/index.ts"],
+      "@api/infra": ["apps/api/src/app/infrastructure/index.ts"],
+      "@api/pet": ["apps/api/src/app/pets/index.ts"],
+      "@api/types": ["libs/types/src/index.ts"],
+      "@api/user": ["apps/api/src/app/user/index.ts"]
+    }
+  },
+  "exclude": ["node_modules", "tmp"]
+}
