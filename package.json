@@ -13,6 +13,7 @@
     "e2e:watch": "cross-env NODE_ENV=test nx e2e:watch frontend-e2e",
     "e2e:watch:prod": "cross-env NODE_ENV=test nx e2e:prod:watch frontend-e2e",
     "db:push": "prisma db push",
+    "db:reset": "prisma migrate reset --force",
     "gen": "prisma generate",
     "postinstall": "prisma generate"
   },
