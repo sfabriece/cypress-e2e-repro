@@ -2804,6 +2804,15 @@
   resolved "https://registry.yarnpkg.com/@nx/nx-win32-x64-msvc/-/nx-win32-x64-msvc-16.7.0.tgz#67bc2d079792417ac6681608b59b13d7bc1eab1c"
   integrity sha512-R8erkoQ/+6HOCC9JTd3wMIa/VhfCR1Lwzws0mhSe0i5IU1mYdiZi67K8DchSXuLUheeEAZOQB4jW0c6P2jMgWA==
 
+"@nx/playwright@16.7.0":
+  version "16.7.0"
+  resolved "https://registry.yarnpkg.com/@nx/playwright/-/playwright-16.7.0.tgz#957af55e753b476e21868b2fea47a660aed4df0d"
+  integrity sha512-cKLBpNoW+DOYXP976KA6mkV66HFIWQkBsjx5A4I2toRfaOZ7ePOyQV0ik0GhGjHmXC+LeKdRL+vOi+annm8Xvw==
+  dependencies:
+    "@nx/devkit" "16.7.0"
+    "@nx/linter" "16.7.0"
+    tslib "^2.3.0"
+
 "@nx/webpack@16.7.0":
   version "16.7.0"
   resolved "https://registry.yarnpkg.com/@nx/webpack/-/webpack-16.7.0.tgz#f708576b8af249c16a44ae5e5e1fedb7a3207210"
